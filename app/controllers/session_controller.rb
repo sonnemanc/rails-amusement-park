@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class SessionController < ApplicationController
   skip_before_action :user_verified, only: [:new, :create]
 
   def new
