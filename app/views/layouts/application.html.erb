@@ -18,7 +18,16 @@
             <span class="icon-bar"></span>
           </button>
         <a class="navbar-brand" href="<%= root_url %>"/>Home</a>
-        <a class="navbar-brand" href="<%= new_user_path %>"/>Sign Up</a>        
+        <% #below we check to see if the user is logged in, as we want different things to show if they are vs aren't %>
+          <% if !current_user %>
+            <a class="navbar-brand" href="<%= new_user_path %>"/>Sign Up</a>
+            <a class="navbar-brand" href="<%= signin_path %>"/>Log In</a>
+          <% end %>
+          <% if current_user %>
+            <a class="navbar-brand" href="<%= user_path(current_user) %>"/><%= current_user.name %>'s profile</a>
+            <%= link_to "Log Out", session_path, class:"navbar-brand",method:'delete' %>
+          <% end %>
+      
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">

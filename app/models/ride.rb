@@ -20,13 +20,14 @@ class Ride < ActiveRecord::Base
 
   def take_ride
     if short_tickets?  && !too_short?
-      'Sorry. You do not have enough tickets to ride the Roller Coaster.'
+      "Sorry. You do not have enough tickets to ride the #{self.attraction.name}."
     elsif too_short? && !short_tickets?
-      'Sorry. You are not tall enough to ride the Roller Coaster.'
+      "Sorry. You are not tall enough to ride the #{self.attraction.name}."
     elsif short_tickets? && too_short?
-      'Sorry. You do not have enough tickets to ride the Roller Coaster. You are not tall enough to ride the Roller Coaster.'
+      "Sorry. You do not have enough tickets to ride the #{self.attraction.name}. You are not tall enough to ride the #{self.attraction.name}."
     else
       took_ride
+      "Thanks for riding the #{self.attraction.name}!"
     end
   end
 
